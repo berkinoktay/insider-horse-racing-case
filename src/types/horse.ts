@@ -1,6 +1,6 @@
 export interface Horse {
-  id: string;
-  name: string;
-  color: string;
-  conditionScore: number;
+  id: number
+  name: string
+  color: string
+  conditionScore: number
 }

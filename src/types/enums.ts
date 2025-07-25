@@ -1,15 +1,18 @@
-export const RaceState = {
-  NotStarted: "NOT_STARTED",
-  InProgress: "IN_PROGRESS",
-  Completed: "COMPLETED",
-} as const;
+export enum HorseState {
+  IDLE = 'IDLE',
+  RUNNING = 'RUNNING',
+  FINISHED = 'FINISHED',
+}
 
-export const AnimationState = {
-  Idle: "IDLE",
-  Running: "RUNNING",
-  Finished: "FINISHED",
-} as const;
+export enum ProgramStatus {
+  COMPLETED = 'completed',
+  CURRENT = 'current',
+  UPCOMING = 'upcoming',
+}
 
-export type RaceStateType = (typeof RaceState)[keyof typeof RaceState];
-export type AnimationStateType =
-  (typeof AnimationState)[keyof typeof AnimationState];
+export enum RaceState {
+  IDLE = 'idle',
+  READY = 'ready', // Not started
+  RACING = 'racing',
+  FINISHED = 'finished',
+}

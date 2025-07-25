@@ -1,13 +1,16 @@
-import type { Horse } from "@/types/horse";
+import type { Horse } from './horse'
+import { ProgramStatus } from './enums'
 
-export interface RaceRound {
-  roundNumber: number;
-  distance: number;
-  participants: Horse[];
-  result: Horse[];
+export interface Race {
+  round: number
+  distance: number
+  status: ProgramStatus
+  participants: Horse[]
+  winner: Horse | null
+  results: RaceResult[]
 }
 
 export interface RaceResult {
-  roundNumber: number;
-  result: Horse[];
+  horse: Horse
+  finishTime: number
 }
