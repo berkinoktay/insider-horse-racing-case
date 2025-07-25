@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import type { Horse } from '@/types'
 import { HORSE_NAMES, HORSE_COLORS } from '@/constants'
 import { ref } from 'vue'
+import { getRandomIndexInArray } from '@/utils'
 
 export const useHorseStore = defineStore('horse', () => {
   const horseList = ref<Horse[]>([])
@@ -13,7 +14,7 @@ export const useHorseStore = defineStore('horse', () => {
       horses.push({
         id: i + 1,
         name: HORSE_NAMES[i],
-        color: availableColors.splice(Math.floor(Math.random() * availableColors.length), 1)[0],
+        color: availableColors.splice(getRandomIndexInArray(availableColors), 1)[0],
         conditionScore: Math.floor(Math.random() * 100) + 1,
       })
     }

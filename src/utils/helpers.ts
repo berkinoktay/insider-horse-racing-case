@@ -1,13 +1,8 @@
-import { HORSE_COLORS } from '@/constants'
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(...inputs))
-}
-
-export function getRandomColor() {
-  return HORSE_COLORS[Math.floor(Math.random() * HORSE_COLORS.length)]
 }
 
 export const shuffle = <T>(array: T[]): T[] => {

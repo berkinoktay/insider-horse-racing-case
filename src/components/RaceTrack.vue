@@ -4,7 +4,7 @@ import { useRaceStore } from '@/stores/race'
 import { storeToRefs } from 'pinia'
 import type { Horse } from '@/types'
 import { RaceState } from '@/types/enums'
-import BaseSvg from './ui/BaseSvg.vue'
+import HorseIcon from '@/components/HorseIcon.vue'
 
 const raceStore = useRaceStore()
 const { currentRace, raceState } = storeToRefs(raceStore)
@@ -121,7 +121,7 @@ const trackLines = ref(Array.from({ length: 20 }, (_, i) => ({ id: i, delay: i *
                   class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-2 bg-black/30 rounded-full blur-xs"
                 ></div>
 
-                <BaseSvg name="horse" size="60" :style="{ color: racingHorses[index].color }" />
+                <HorseIcon :size="60" :color="racingHorses[index].color" />
 
                 <div
                   v-if="isRacing"

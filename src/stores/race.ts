@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref, computed, reactive } from 'vue'
 import { useHorseStore } from './horse'
 import { shuffle } from '@/utils'
-import { DEFAULT_PROGRAM, HORSES_PER_RACE, TOTAL_ROUNDS } from '@/constants/race'
+import { HORSES_PER_RACE, RACE_DISTANCES, TOTAL_ROUNDS } from '@/constants/race'
 import type { Race } from '@/types/race'
 import { ProgramStatus, RaceState } from '@/types/enums'
 
@@ -10,7 +10,7 @@ export const useRaceStore = defineStore('race', () => {
   const horseStore = useHorseStore()
 
   // State
-  const program = ref<Race[]>(JSON.parse(JSON.stringify(DEFAULT_PROGRAM)))
+  const program = ref<Race[]>([])
   const currentRound = ref(0)
   const raceState = ref<RaceState>(RaceState.IDLE)
   const isGenerating = ref(false)
@@ -21,6 +21,7 @@ export const useRaceStore = defineStore('race', () => {
   const currentRace = computed(() => (currentRound.value > 0 ? program.value[currentRound.value - 1] : null))
 
   // Actions
+
   const generateProgram = () => {
     isGenerating.value = true
     const newProgram = []
@@ -35,9 +36,12 @@ export const useRaceStore = defineStore('race', () => {
       }
 
       newProgram.push({
-        ...DEFAULT_PROGRAM[i],
+        round: i + 1,
+        distance: RACE_DISTANCES[i],
         participants,
         status: i === 0 ? ProgramStatus.CURRENT : ProgramStatus.UPCOMING,
+        winner: null,
+        results: [],
       })
     }
     program.value = newProgram
@@ -48,13 +52,13 @@ export const useRaceStore = defineStore('race', () => {
     }, 1000)
   }
 
-  const startRace = () => {
-    if (raceState.value !== RaceState.READY) return
+  const startRace = async () => {
+    if (raceState.value !== RaceState.READY || !currentRace.value) return
     raceState.value = RaceState.RACING
   }
 
   const resetRace = () => {
-    program.value = JSON.parse(JSON.stringify(DEFAULT_PROGRAM))
+    program.value = []
     currentRound.value = 0
     raceState.value = RaceState.IDLE
   }

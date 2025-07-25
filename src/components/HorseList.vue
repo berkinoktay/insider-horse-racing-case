@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useHorseStore } from '@/stores/horse'
-import BaseSvg from './ui/BaseSvg.vue'
+import HorseIcon from '@/components/HorseIcon.vue'
 
 const horseStore = useHorseStore()
 const horses = computed(() => horseStore.horseList)
@@ -40,18 +40,18 @@ const getConditionBarColor = (score: number) => {
       <div
         v-for="(horse, index) in horses"
         :key="horse.id"
-        class="group relative backdrop-blur-sm bg-white/10 rounded-xl p-4 border border-white/20"
+        class="group relative backdrop-blur-sm bg-white/10 rounded-xl p-4 border border-white/20 overflow-hidden"
       >
         <!-- Horse Number Badge -->
         <div
-          class="absolute top-2 right-2 w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-xs"
+          class="absolute top-0 left-0 w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-sm rounded-br-lg"
         >
           {{ index + 1 }}
         </div>
 
         <!-- Horse Info -->
         <div class="flex items-center space-x-2 mb-3">
-          <BaseSvg name="horse" size="30" :style="{ color: horse.color }" />
+          <HorseIcon :size="50" :color="horse.color" />
 
           <div class="flex-1">
             <h3 class="text-white font-bold text-base leading-tight">{{ horse.name }}</h3>
