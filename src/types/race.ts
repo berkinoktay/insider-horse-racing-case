@@ -1,13 +1,13 @@
-import type { Horse } from './horse'
+import type { Horse, RaceParticipant } from './horse'
 import { ProgramStatus } from './enums'
 
 export interface Race {
   round: number
   distance: number
+  participants: RaceParticipant[]
   status: ProgramStatus
-  participants: Horse[]
-  winner: Horse | null
-  results: RaceResult[]
+  winner: RaceParticipant | null
+  results: RaceParticipant[]
 }
 
 export interface RaceResult {

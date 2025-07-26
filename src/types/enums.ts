@@ -14,5 +14,6 @@ export enum RaceState {
   IDLE = 'idle',
   READY = 'ready', // Not started
   RACING = 'racing',
+  PAUSED = 'paused',
   FINISHED = 'finished',
 }

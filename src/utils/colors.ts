@@ -1,17 +1,26 @@
-import { ProgramStatus } from '@/types/enums'
+import type { BaseBadgeProps } from '@/components/ui/BaseBadge.vue'
+import { ProgramStatus, RaceState } from '@/types/enums'
 
 export function getRandomIndexInArray<T>(array: T[]): number {
   return Math.floor(Math.random() * array.length)
 }
 
-export function getStatusColor(status: ProgramStatus): string {
-  switch (status) {
-    case ProgramStatus.COMPLETED:
-      return 'from-green-400 to-emerald-500'
-    case ProgramStatus.CURRENT:
-      return 'from-yellow-400 to-orange-500'
-    case ProgramStatus.UPCOMING:
-    default:
-      return 'from-gray-400 to-gray-500'
+export function getProgramStatusVariant(status: ProgramStatus): BaseBadgeProps['variant'] {
+  const statusVariant: Record<string, BaseBadgeProps['variant']> = {
+    [ProgramStatus.COMPLETED]: 'success',
+    [ProgramStatus.CURRENT]: 'primary',
+    [ProgramStatus.UPCOMING]: 'neutral',
   }
+
+  return statusVariant[status] ?? 'neutral'
+}
+
+export function getRaceStateVariant(state: RaceState): BaseBadgeProps['variant'] {
+  const stateVariant: Record<string, BaseBadgeProps['variant']> = {
+    [RaceState.RACING]: 'danger',
+    [RaceState.READY]: 'primary',
+    [RaceState.IDLE]: 'neutral',
+  }
+
+  return stateVariant[state] ?? 'neutral'
 }

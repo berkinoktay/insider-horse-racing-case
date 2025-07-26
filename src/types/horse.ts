@@ -4,3 +4,10 @@ export interface Horse {
   color: string
   conditionScore: number
 }
+
+export interface RaceParticipant extends Horse {
+  position: number
+  finishTime: number
+  totalRunTime: number
+  animationFrameId?: number | null
+}

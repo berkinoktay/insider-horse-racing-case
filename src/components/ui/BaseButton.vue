@@ -13,7 +13,7 @@ import { computed } from 'vue'
 export type BaseButtonProps = {
   type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
-  variant?: 'primary' | 'secondary' | 'accent' | 'danger'
+  variant?: 'primary' | 'secondary' | 'accent' | 'danger' | 'warning'
   size?: 'sm' | 'md' | 'lg'
   fluid?: boolean
   loading?: boolean
@@ -42,6 +42,7 @@ const variantClasses = {
   secondary: 'bg-secondary-500 text-white ',
   accent: 'bg-accent-500 text-white ',
   danger: 'bg-error-500 text-white ',
+  warning: 'bg-yellow-500 text-white ',
 }
 
 const classes = computed(() =>
