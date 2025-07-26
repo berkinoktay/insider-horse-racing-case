@@ -25,23 +25,23 @@ export type WinnerPodiumProps = {
 const props = withDefaults(defineProps<WinnerPodiumProps>(), {})
 
 const titleVariantClasses = {
-  first: 'text-yellow-300',
-  second: 'text-sm text-white',
-  third: 'text-sm text-white',
+  first: 'text-yellow-300 text-sm sm:text-base',
+  second: 'text-xs sm:text-sm text-white',
+  third: 'text-xs sm:text-sm text-white',
 }
 const titleClasses = computed(() => titleVariantClasses[props.variant])
 
 const podiumBoxVariantClasses = {
-  first: 'h-20 w-20 bg-gradient-to-t from-secondary-400 to-secondary-600',
-  second: 'h-16 w-16 bg-gradient-to-t from-gray-300 to-gray-500',
-  third: 'h-12 w-16 bg-gradient-to-t from-amber-600 to-amber-800',
+  first: 'h-16 w-16 sm:h-20 sm:w-20 bg-gradient-to-t from-secondary-400 to-secondary-600',
+  second: 'h-14 w-14 sm:h-16 sm:w-16 bg-gradient-to-t from-gray-300 to-gray-500',
+  third: 'h-10 w-14 sm:h-12 sm:w-16 bg-gradient-to-t from-amber-600 to-amber-800',
 }
 const podiumBoxClasses = computed(() => podiumBoxVariantClasses[props.variant])
 
 const contentVariantClasses = {
-  first: 'text-4xl',
-  second: 'text-3xl',
-  third: 'text-2xl',
+  first: 'text-3xl sm:text-4xl',
+  second: 'text-2xl sm:text-3xl',
+  third: 'text-xl sm:text-2xl',
 }
 const contentClasses = computed(() => contentVariantClasses[props.variant])
 
@@ -53,9 +53,9 @@ const podiumLineVariantClasses = {
 const podiumLineClasses = computed(() => podiumLineVariantClasses[props.variant])
 
 const timeVariantClasses = {
-  first: 'text-sm font-bold text-yellow-300',
-  second: 'text-xs text-white/70',
-  third: 'text-xs text-white/70',
+  first: 'text-xs sm:text-sm font-bold text-yellow-300',
+  second: 'text-[10px] sm:text-xs text-white/70',
+  third: 'text-[10px] sm:text-xs text-white/70',
 }
 const timeClasses = computed(() => timeVariantClasses[props.variant])
 </script>

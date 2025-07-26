@@ -1,8 +1,5 @@
 import type { Column } from '@/types'
 
-export const MAX_HORSES = 20
-export const HORSES_PER_RACE = 10
-
 export const HORSE_NAMES = [
   'Thunderbolt',
   'Shadowfax',

@@ -6,28 +6,28 @@
       'opacity-60': status === 'upcoming',
     }"
   >
-    <div class="pl-6 p-4">
-      <div class="flex items-center justify-between mb-3">
+    <div class="pl-6 p-3 sm:p-4">
+      <div class="flex items-center lg:items-start justify-between mb-3">
         <div class="flex items-center space-x-3">
           <div>
-            <h3 class="text-white font-bold text-lg">{{ roundName }}</h3>
-            <p class="text-blue-200 text-sm">Distance: {{ distance }}m</p>
+            <h3 class="text-white font-bold text-base sm:text-lg">{{ roundName }}</h3>
+            <p class="text-blue-200 text-xs sm:text-sm">Distance: {{ distance }}m</p>
           </div>
         </div>
         <BaseBadge :text="status.toUpperCase()" :variant="getProgramStatusVariant(status)" size="sm" />
       </div>
 
       <div v-if="participants.length > 0" class="space-y-2">
-        <div class="text-white/80 text-sm font-medium">Participants:</div>
-        <div class="grid grid-cols-2 gap-2">
+        <div class="text-white/80 text-xs sm:text-sm font-medium">Participants:</div>
+        <div class="grid grid-cols-2 gap-x-2 gap-y-1">
           <div
             v-for="(participant, index) in participants"
             :key="participant.id"
-            class="bg-white/10 rounded-lg px-3 py-2 text-center text-white text-sm font-medium hover:bg-white/20 transition-all duration-200"
+            class="bg-white/10 rounded-lg px-3 py-2 text-center text-white font-medium hover:bg-white/20 transition-all duration-200"
           >
             <div class="flex items-center justify-center space-x-1">
-              <span class="text-xs opacity-70">{{ index + 1 }}.</span>
-              <span class="text-xs truncate">{{ participant.name }}</span>
+              <span class="text-xs sm:text-sm opacity-70">{{ index + 1 }}.</span>
+              <span class="text-xs sm:text-sm truncate">{{ participant.name }}</span>
             </div>
           </div>
         </div>

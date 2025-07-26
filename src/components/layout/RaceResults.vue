@@ -1,16 +1,16 @@
 <template>
-  <div class="h-full flex flex-col">
+  <div class="h-[60vh] lg:h-full flex flex-col">
     <!-- Header -->
     <WidgetHeader>
       <div class="flex items-center space-x-2 justify-between w-full">
-        <div class="text-lg font-bold text-white flex items-center space-x-2">
-          <Trophy class="w-6 h-6" />
+        <div class="text-base sm:text-lg font-bold text-white flex items-center space-x-2">
+          <Trophy class="w-5 h-5 sm:w-6 sm:h-6" />
           <span>Race Results</span>
         </div>
         <select
           v-if="isProgramGenerated"
           v-model="selectedRound"
-          class="bg-white/10 border border-white/20 text-white rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="bg-white/10 border border-white/20 text-white rounded-lg px-2 sm:px-3 py-1 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <option v-for="race in raceProgram" :key="race.round" :value="race.round" class="bg-gray-800">
             Round {{ race.round }}
@@ -20,13 +20,13 @@
     </WidgetHeader>
 
     <div class="flex-1 overflow-y-auto">
-      <div v-if="currentResults" class="p-4 space-y-6">
+      <div v-if="currentResults" class="p-2 sm:p-4 space-y-6">
         <div class="text-center">
-          <h3 class="text-lg font-bold text-white mb-4 flex items-center justify-center space-x-2">
+          <h3 class="text-base sm:text-lg font-bold text-white mb-4 flex items-center justify-center space-x-2">
             <span>Winner's Podium</span>
           </h3>
 
-          <div class="flex items-end justify-center space-x-2 mb-6">
+          <div class="flex items-end justify-center space-x-1 sm:space-x-2 mb-6">
             <WinnerPodium
               v-if="topThree[1]"
               variant="second"
@@ -55,12 +55,12 @@
 
         <BaseTable :data="currentResults.results" :columns="columns">
           <template #header>
-            <div class="flex items-center justify-between space-x-2 text-lg font-bold text-white w-full">
+            <div class="flex items-center justify-between space-x-2 text-base sm:text-lg font-bold text-white w-full">
               <div class="flex items-center space-x-2">
-                <ChartNoAxesColumn class="w-6 h-6" />
+                <ChartNoAxesColumn class="w-5 h-5 sm:w-6 sm:h-6" />
                 <span>Full Results</span>
               </div>
-              <span class="text-white/60 text-sm">{{ currentResults.distance }}m</span>
+              <span class="text-white/60 text-xs sm:text-sm">{{ currentResults.distance }}m</span>
             </div>
           </template>
 
@@ -68,18 +68,18 @@
             <span class="text-white font-bold">{{ value }}</span>
           </template>
           <template #data-horse="{ value }">
-            <span class="text-white font-medium">{{ value }}</span>
+            <span class="text-white font-medium text-xs sm:text-base">{{ value }}</span>
           </template>
           <template #data-time="{ value }">
-            <span class="text-blue-200 font-mono">{{ value }}</span>
+            <span class="text-blue-200 font-mono text-xs sm:text-base">{{ value }}</span>
           </template>
         </BaseTable>
       </div>
 
       <div v-else class="flex-1 flex items-center justify-center p-8">
         <div class="text-center">
-          <h3 class="text-xl font-bold text-white mb-2">No Results Yet</h3>
-          <p class="text-white/60">Results will appear after races complete</p>
+          <h3 class="text-lg sm:text-xl font-bold text-white mb-2">No Results Yet</h3>
+          <p class="text-white/60 text-sm">Results will appear after races complete</p>
         </div>
       </div>
     </div>

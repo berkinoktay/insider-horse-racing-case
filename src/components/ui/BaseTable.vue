@@ -10,12 +10,12 @@
     <div class="overflow-x-auto">
       <table class="w-full">
         <thead class="bg-white/5">
-          <tr class="text-white/80 text-sm">
+          <tr class="text-white/80 text-xs sm:text-sm">
             <th
               v-for="column in props.columns"
               :key="column.key"
               scope="col"
-              class="text-left p-3"
+              class="text-left p-2 sm:p-3"
               :class="column.headerClass"
             >
               <slot :name="`header-${column.key}`" :column="column">
@@ -31,9 +31,9 @@
             class="border-b border-white/10 hover:bg-white/5 transition-colors"
             :style="{ height: props.rowHeight + 'px' }"
           >
-            <td v-for="column in props.columns" :key="column.key" class="p-3" :class="column.cellClass">
+            <td v-for="column in props.columns" :key="column.key" class="p-2 sm:p-3" :class="column.cellClass">
               <slot :name="`data-${column.key}`" :value="row[column.key]" :row="row">
-                <span class="text-white font-medium">{{ row[column.key] }}</span>
+                <span class="text-white font-medium text-xs sm:text-base">{{ row[column.key] }}</span>
               </slot>
             </td>
           </tr>

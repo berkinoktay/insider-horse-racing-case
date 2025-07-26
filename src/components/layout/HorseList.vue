@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full flex flex-col">
+  <div class="h-[50vh] lg:h-full flex flex-col">
     <WidgetHeader>
       <div class="flex items-center space-x-2 justify-between w-full">
         <span class="text-lg font-bold text-white">Stable Roster</span>

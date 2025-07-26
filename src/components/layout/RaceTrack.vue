@@ -1,25 +1,25 @@
 <template>
-  <div class="h-full flex flex-col relative overflow-hidden">
+  <div class="h-[70vh] lg:h-full flex flex-col relative overflow-hidden">
     <WidgetHeader>
       <div class="flex items-center space-x-2 justify-between w-full">
         <div class="flex items-center space-x-3">
-          <div class="text-2xl">🏁</div>
+          <div class="text-xl sm:text-2xl">🏁</div>
           <div v-if="!allRacesFinished">
-            <h3 class="text-xl font-bold text-white">
+            <h3 class="text-base sm:text-xl font-bold text-white">
               {{ currentRace ? `Round ${currentRace.round}` : 'Awaiting Program' }}
             </h3>
-            <p class="text-blue-200 text-sm">
+            <p class="text-blue-200 text-xs sm:text-sm">
               {{ currentRace ? `Distance: ${currentRace.distance}m` : 'Generate a program to begin' }}
             </p>
           </div>
           <div v-else>
-            <h3 class="text-xl font-bold text-white">All races finished!</h3>
+            <h3 class="text-base sm:text-xl font-bold text-white">All races finished!</h3>
           </div>
         </div>
         <BaseBadge
           :text="raceState.toUpperCase()"
           :variant="getRaceStateVariant(raceState)"
-          size="lg"
+          size="sm"
           :animation="isRacing ? 'pulse' : 'none'"
         />
       </div>
@@ -40,7 +40,9 @@
           >
             <div class="w-px h-full bg-gradient-to-b from-white/0 via-white/20 to-white/0" />
             <div class="absolute -top-1.5 transform -translate-x-1/2 left-1/2">
-              <span class="text-xs text-white/60 font-semibold bg-black/30 px-1.5 py-0.5 rounded-md whitespace-nowrap">
+              <span
+                class="text-[10px] sm:text-xs text-white/60 font-semibold bg-black/30 px-1 sm:px-1.5 py-0.5 rounded-md whitespace-nowrap"
+              >
                 {{ marker }}m
               </span>
             </div>
@@ -57,28 +59,24 @@
               <!-- Lane Number -->
 
               <div
-                class="absolute top-1/2 -translate-y-1/2 left-0 w-12 h-[calc(100%-6px)] bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center text-white font-bold text-lg z-10 rounded-r-lg"
+                class="absolute top-1/2 -translate-y-1/2 left-0 w-8 sm:w-8 h-[calc(100%-6px)] bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center text-white font-bold text-sm sm:text-lg z-10 rounded-r-lg"
               >
                 {{ index + 1 }}
               </div>
 
               <!-- Horse Position -->
               <div
-                class="group absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-5/6- hover:scale-110 cursor-pointer"
+                class="group absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-1/2 hover:scale-110 cursor-pointer"
                 :class="{ 'transition-all duration-500 ease-out': transitionsEnabled }"
                 :style="{ left: (participant.position / currentRace.distance) * 100 + '%' }"
               >
                 <div class="relative">
-                  <div
-                    class="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-8 h-2 bg-black/30 rounded-full blur-xs"
-                  ></div>
+                  <HorseIcon
+                    :size="80"
+                    :color="participant.color"
+                    :is-running="isRacing && participant.position < currentRace.distance"
+                  />
 
-                  <HorseIcon :size="80" :color="participant.color" />
-
-                  <div
-                    v-if="isRacing"
-                    class="absolute top-1/2 right-full transform -translate-y-1/2 w-14 h-1 bg-gradient-to-r from-transparent to-white/30 rounded-full animate-pulse"
-                  ></div>
                   <div
                     class="absolute top-1/2 -translate-y-1/2 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity"
                   >
@@ -101,9 +99,9 @@
 
       <!-- Finish Line -->
       <div
-        class="absolute top-0 bottom-0 right-2 w-4 bg-gradient-to-b from-error-600 via-finish-line to-error-600 flex items-center justify-center shadow-lg"
+        class="absolute top-0 bottom-0 right-2 w-3 sm:w-4 bg-gradient-to-b from-error-600 via-finish-line to-error-600 flex items-center justify-center shadow-lg"
       >
-        <div class="text-error-500 font-bold transform rotate-90">FINISH</div>
+        <div class="text-error-500 font-bold transform rotate-90 text-xs sm:text-base">FINISH</div>
       </div>
     </div>
   </div>

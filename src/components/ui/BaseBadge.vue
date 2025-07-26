@@ -11,7 +11,7 @@ import { cn } from '@/utils'
 export interface BaseBadgeProps {
   text: string
   variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'neutral'
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'xs' | 'sm' | 'md' | 'lg'
   animation?: 'pulse' | 'none'
 }
 
@@ -32,6 +32,7 @@ const variantClasses = {
 }
 
 const sizeClasses = {
+  xs: 'px-2 py-0.5 text-[10px]',
   sm: 'px-2.5 py-0.5 text-xs',
   md: 'px-3 py-1 text-sm',
   lg: 'px-4 py-1.5 text-base',

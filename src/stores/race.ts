@@ -14,7 +14,7 @@ export const useRaceStore = defineStore('race', () => {
   const program = ref<Race[]>([])
   const currentRound = ref(1)
   const raceState = ref<RaceState>(RaceState.IDLE)
-  const isGenerating = ref(false)
+  const isGeneratingProgram = ref(false)
   const autoMode = ref(false)
 
   // Getters
@@ -23,9 +23,8 @@ export const useRaceStore = defineStore('race', () => {
   const allRacesFinished = computed(() => program.value.every((r) => r.status === ProgramStatus.COMPLETED))
 
   // Actions
-
   const generateProgram = () => {
-    isGenerating.value = true
+    isGeneratingProgram.value = true
     const newProgram = []
 
     for (let i = 0; i < TOTAL_ROUNDS; i++) {
@@ -57,7 +56,7 @@ export const useRaceStore = defineStore('race', () => {
     currentRound.value = 1
     raceState.value = RaceState.READY
     setTimeout(() => {
-      isGenerating.value = false
+      isGeneratingProgram.value = false
     }, 1000)
   }
 
@@ -177,7 +176,7 @@ export const useRaceStore = defineStore('race', () => {
     program,
     currentRound,
     raceState,
-    isGenerating,
+    isGeneratingProgram,
     autoMode,
     completedRounds,
     currentRace,

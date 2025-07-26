@@ -1,5 +1,7 @@
 <template>
-  <div class="group relative backdrop-blur-sm bg-white/10 rounded-xl p-4 border border-white/20 overflow-hidden">
+  <div
+    class="group relative backdrop-blur-sm bg-white/10 rounded-xl p-4 border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 overflow-hidden"
+  >
     <!-- Horse Number Badge -->
     <div
       class="absolute top-0 left-0 w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-sm rounded-br-lg"
