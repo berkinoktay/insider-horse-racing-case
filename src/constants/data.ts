@@ -1,3 +1,5 @@
+import type { Column } from '@/types'
+
 export const MAX_HORSES = 20
 export const HORSES_PER_RACE = 10
 
@@ -45,4 +47,19 @@ export const HORSE_COLORS = [
   '#ffd8b1', // açık turuncu
   '#000080', // lacivert
   '#808080', // gri
+]
+
+export const RACE_RESULTS_COLUMNS: Column[] = [
+  {
+    key: 'position',
+    label: 'Pos',
+  },
+  {
+    key: 'horse',
+    label: 'Horse',
+  },
+  {
+    key: 'time',
+    label: 'Time',
+  },
 ]

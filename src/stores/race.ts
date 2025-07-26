@@ -19,9 +19,8 @@ export const useRaceStore = defineStore('race', () => {
 
   // Getters
   const completedRounds = computed(() => program.value.filter((r) => r.status === ProgramStatus.COMPLETED).length)
-  const progressPercentage = computed(() => Math.round((completedRounds.value / TOTAL_ROUNDS) * 100))
-  const hasRaceBeenRun = computed(() => completedRounds.value > 0)
   const currentRace = computed(() => program.value[currentRound.value - 1])
+  const allRacesFinished = computed(() => program.value.every((r) => r.status === ProgramStatus.COMPLETED))
 
   // Actions
 
@@ -89,6 +88,28 @@ export const useRaceStore = defineStore('race', () => {
     })
   }
 
+  const resetRace = () => {
+    program.value.forEach((race, index) => {
+      race.participants.forEach((participant) => {
+        if (participant.animationFrameId) {
+          cancelAnimationFrame(participant.animationFrameId)
+          participant.animationFrameId = null
+        }
+        participant.position = 0
+        participant.finishTime = 0
+        participant.totalRunTime = 0
+      })
+
+      race.status = index === 0 ? ProgramStatus.CURRENT : ProgramStatus.UPCOMING
+      race.winner = null
+      race.results = []
+    })
+
+    currentRound.value = 1
+
+    raceState.value = program.value.length > 0 ? RaceState.READY : RaceState.IDLE
+  }
+
   function runHorse(horse: RaceParticipant) {
     let startTs: number | null = null
     const { conditionScore } = horse
@@ -97,9 +118,9 @@ export const useRaceStore = defineStore('race', () => {
     const step = (ts: number) => {
       if (!startTs) startTs = ts
       const elapsedSec = (ts - startTs) / 1000
-      horse.totalRunTime += elapsedSec
+      horse.totalRunTime = elapsedSec
 
-      const speedFactor = 1 + (conditionScore / 100) * 1 + Math.random() * 0.5
+      const speedFactor = 2 + (conditionScore / 100) * 1 + Math.random() * 0.5
       const distanceCovered = horse.position + speedFactor
 
       horse.position = Math.min(distanceCovered, currentRace.value!.distance)
@@ -152,17 +173,6 @@ export const useRaceStore = defineStore('race', () => {
     autoMode.value = value
   }
 
-  const resetRace = () => {
-    program.value = []
-    currentRound.value = 0
-    raceState.value = RaceState.IDLE
-    currentRace.value?.participants.forEach((horse) => {
-      if (horse.animationFrameId) {
-        cancelAnimationFrame(horse.animationFrameId)
-      }
-    })
-  }
-
   return {
     program,
     currentRound,
@@ -170,8 +180,6 @@ export const useRaceStore = defineStore('race', () => {
     isGenerating,
     autoMode,
     completedRounds,
-    progressPercentage,
-    hasRaceBeenRun,
     currentRace,
     generateProgram,
     startRace,
@@ -179,5 +187,6 @@ export const useRaceStore = defineStore('race', () => {
     resumeRace,
     resetRace,
     toggleAutoMode,
+    allRacesFinished,
   }
 })

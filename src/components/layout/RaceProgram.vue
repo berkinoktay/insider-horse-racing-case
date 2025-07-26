@@ -12,7 +12,7 @@
       </div>
     </WidgetHeader>
 
-    <div v-if="raceProgram.length > 0" class="flex-1 grid grid-cols-2 overflow-y-auto p-4 gap-3">
+    <div v-if="raceProgram.length > 0" class="flex-1 flex flex-col overflow-y-auto p-4 gap-3">
       <ProgramCard
         v-for="(race, index) in raceProgram"
         :key="race.round"

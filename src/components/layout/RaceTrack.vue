@@ -4,13 +4,16 @@
       <div class="flex items-center space-x-2 justify-between w-full">
         <div class="flex items-center space-x-3">
           <div class="text-2xl">🏁</div>
-          <div>
+          <div v-if="!allRacesFinished">
             <h3 class="text-xl font-bold text-white">
               {{ currentRace ? `Round ${currentRace.round}` : 'Awaiting Program' }}
             </h3>
             <p class="text-blue-200 text-sm">
               {{ currentRace ? `Distance: ${currentRace.distance}m` : 'Generate a program to begin' }}
             </p>
+          </div>
+          <div v-else>
+            <h3 class="text-xl font-bold text-white">All races finished!</h3>
           </div>
         </div>
         <BaseBadge
@@ -28,7 +31,7 @@
 
       <div class="absolute inset-0 bg-gradient-to-b from-green-400/20 to-green-800/40 transform">
         <!-- Distance Markers -->
-        <template v-if="currentRace">
+        <template v-if="currentRace && !allRacesFinished">
           <div
             v-for="marker in distanceMarkers"
             :key="`marker-${marker}`"
@@ -44,7 +47,7 @@
           </div>
         </template>
         <div class="h-full flex flex-col">
-          <template v-if="hasParticipants">
+          <template v-if="hasParticipants && !allRacesFinished">
             <div
               v-for="(participant, index) in currentRace!.participants"
               :key="participant.id"
@@ -61,22 +64,23 @@
 
               <!-- Horse Position -->
               <div
-                class="group absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-5/6- transition-all duration-500 ease-out hover:scale-110 cursor-pointer"
+                class="group absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-5/6- hover:scale-110 cursor-pointer"
+                :class="{ 'transition-all duration-500 ease-out': transitionsEnabled }"
                 :style="{ left: (participant.position / currentRace.distance) * 100 + '%' }"
               >
                 <div class="relative">
                   <div
-                    class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-2 bg-black/30 rounded-full blur-xs"
+                    class="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-8 h-2 bg-black/30 rounded-full blur-xs"
                   ></div>
 
-                  <HorseIcon :size="60" :color="participant.color" />
+                  <HorseIcon :size="80" :color="participant.color" />
 
                   <div
                     v-if="isRacing"
-                    class="absolute top-1/2 right-full transform -translate-y-1/2 w-12 h-1 bg-gradient-to-r from-transparent to-white/50 rounded-full animate-pulse"
+                    class="absolute top-1/2 right-full transform -translate-y-1/2 w-14 h-1 bg-gradient-to-r from-transparent to-white/30 rounded-full animate-pulse"
                   ></div>
                   <div
-                    class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity"
+                    class="absolute top-1/2 -translate-y-1/2 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity"
                   >
                     {{ participant.name }}
                   </div>
@@ -85,7 +89,6 @@
             </div>
           </template>
           <template v-else>
-            <!-- Skeleton Lanes -->
             <div
               v-for="i in 10"
               :key="`skeleton-${i}`"
@@ -106,7 +109,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, watch, nextTick } from 'vue'
 import { useRaceStore } from '@/stores/race'
 import { storeToRefs } from 'pinia'
 import { RaceState } from '@/types/enums'
@@ -116,10 +119,22 @@ import { getRaceStateVariant } from '@/utils/colors'
 import BaseBadge from '@/components/ui/BaseBadge.vue'
 
 const raceStore = useRaceStore()
-const { currentRace, raceState } = storeToRefs(raceStore)
+const { currentRace, raceState, allRacesFinished } = storeToRefs(raceStore)
 
+const transitionsEnabled = ref(false)
 const isRacing = computed(() => raceState.value === RaceState.RACING)
 const hasParticipants = computed(() => !!currentRace.value?.participants?.length)
+
+watch(currentRace, async (newRace, oldRace) => {
+  if (newRace?.round !== oldRace?.round) {
+    transitionsEnabled.value = false
+    await nextTick()
+  }
+})
+
+watch(isRacing, (racing) => {
+  transitionsEnabled.value = racing
+})
 
 const distanceMarkers = computed(() => {
   if (!currentRace.value) return []

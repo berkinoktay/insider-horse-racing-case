@@ -1,9 +1,18 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import HorseList from '@/components/layout/HorseList.vue'
 import RaceTrack from '@/components/layout/RaceTrack.vue'
 import RaceProgram from '@/components/layout/RaceProgram.vue'
 import HeaderSection from '@/components/layout/HeaderSection.vue'
-import RaceResults from '@/components/RaceResults.vue'
+import RaceResults from '@/components/layout/RaceResults.vue'
+import BaseTabs from '@/components/ui/BaseTabs.vue'
+
+const activeTab = ref('program')
+
+const tabs = [
+  { label: 'Program', value: 'program' },
+  { label: 'Results', value: 'results' },
+]
 </script>
 
 <template>
@@ -19,18 +28,22 @@ import RaceResults from '@/components/RaceResults.vue'
           </div>
         </div>
 
-        <div class="w-1/2 h-full flex flex-col gap-6">
-          <div class="flex-1 backdrop-blur-lg bg-white/5 rounded-2xl border border-white/20 shadow-2xl overflow-hidden">
+        <div class="w-1/2 h-full">
+          <div class="h-full backdrop-blur-lg bg-white/5 rounded-2xl border border-white/20 shadow-2xl overflow-hidden">
             <RaceTrack />
-          </div>
-          <div class="h-1/3 backdrop-blur-lg bg-white/10 rounded-2xl border border-white/20 shadow-2xl">
-            <RaceProgram />
           </div>
         </div>
 
-        <div class="w-1/4 flex gap-6">
-          <div class="flex-1 backdrop-blur-lg bg-white/10 rounded-2xl border border-white/20 shadow-2xl">
-            <RaceResults />
+        <div class="w-1/4 h-full">
+          <div class="flex flex-col h-full gap-6">
+            <BaseTabs v-model="activeTab" :tabs="tabs" />
+
+            <div
+              class="h-full backdrop-blur-lg bg-white/10 rounded-2xl border border-white/20 shadow-2xl flex flex-col overflow-hidden"
+            >
+              <RaceProgram v-show="activeTab === 'program'" />
+              <RaceResults v-show="activeTab === 'results'" />
+            </div>
           </div>
         </div>
       </div>

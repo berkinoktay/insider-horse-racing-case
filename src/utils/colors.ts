@@ -20,6 +20,7 @@ export function getRaceStateVariant(state: RaceState): BaseBadgeProps['variant']
     [RaceState.RACING]: 'danger',
     [RaceState.READY]: 'primary',
     [RaceState.IDLE]: 'neutral',
+    [RaceState.FINISHED]: 'success',
   }
 
   return stateVariant[state] ?? 'neutral'
