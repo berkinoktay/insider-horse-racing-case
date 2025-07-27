@@ -24,7 +24,7 @@
     </div>
     <div v-else class="flex-1 flex flex-col items-center justify-center text-primary-300 text-center gap-6">
       <CalendarX2 :size="80" />
-      <p class="text-primary-300 text-xl">{{ t('program.no_races') }}</p>
+      <p data-cy="no-races-message" class="text-primary-300 text-xl">{{ t('program.no_races') }}</p>
     </div>
   </div>
 </template>

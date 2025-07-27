@@ -24,23 +24,31 @@
               :disabled="raceState === RaceState.RACING || raceState === RaceState.PAUSED"
               variant="secondary"
               size="sm"
+              data-cy="generate-program-button"
             >
               <span v-if="!isGeneratingProgram"> {{ t('header.generate_program') }} </span>
               <span v-else> {{ t('header.generating') }} </span>
             </BaseButton>
 
             <BaseButton
-              v-if="raceState !== RaceState.RACING"
-              @click="handleStartResume"
+              v-if="raceState === RaceState.IDLE || raceState === RaceState.READY || raceState === RaceState.FINISHED"
+              @click="startRace"
               :disabled="isGeneratingProgram || raceState === RaceState.IDLE || raceState === RaceState.FINISHED"
               variant="accent"
               size="sm"
+              data-cy="start-button"
             >
-              {{ raceState === RaceState.PAUSED ? t('header.resume') : t('header.start') }}
+              {{ t('header.start') }}
             </BaseButton>
 
-            <BaseButton v-if="raceState === RaceState.RACING" @click="pauseRace" variant="warning" size="sm">
-              {{ t('header.pause') }}
+            <BaseButton
+              v-else
+              @click="handleStartResume"
+              :variant="raceState === RaceState.RACING ? 'warning' : 'accent'"
+              size="sm"
+              data-cy="pause-resume-button"
+            >
+              {{ raceState === RaceState.RACING ? t('header.pause') : t('header.resume') }}
             </BaseButton>
 
             <BaseButton
@@ -48,6 +56,7 @@
               :disabled="isGeneratingProgram || raceState === RaceState.IDLE"
               variant="danger"
               size="sm"
+              data-cy="reset-button"
             >
               {{ t('header.reset') }}
             </BaseButton>
@@ -76,7 +85,7 @@ const handleStartResume = () => {
   if (raceState.value === RaceState.PAUSED) {
     resumeRace()
   } else {
-    startRace()
+    pauseRace()
   }
 }
 </script>

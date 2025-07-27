@@ -1,7 +1,7 @@
 <template>
-  <div class="h-[70vh] lg:h-full flex flex-col relative overflow-hidden">
+  <div class="h-[60vh] lg:h-full flex flex-col">
     <WidgetHeader>
-      <div class="flex items-center space-x-2 justify-between w-full">
+      <div class="flex flex-row lg:flex-col xl:flex-row items-center space-x-2 justify-between w-full">
         <div class="flex items-center space-x-3">
           <div class="text-xl sm:text-2xl">🏁</div>
           <!-- Case 1: No program generated yet -->
@@ -24,6 +24,7 @@
           </div>
         </div>
         <BaseBadge
+          data-cy="race-track-status"
           :text="t(`status.${raceState.toLowerCase()}`)"
           :variant="getRaceStateVariant(raceState)"
           size="md"
@@ -32,7 +33,6 @@
       </div>
     </WidgetHeader>
 
-    <!-- Track Container -->
     <div class="flex-1 relative overflow-hidden">
       <div class="absolute inset-0 bg-gradient-to-r from-green-600 via-green-500 to-green-600 opacity-80"></div>
 
@@ -58,20 +58,20 @@
         <div class="h-full flex flex-col">
           <template v-if="hasParticipants && !allRacesFinished">
             <div
-              v-for="(participant, index) in currentRace!.participants"
+              v-for="(participant, index) in currentRace?.participants"
+              data-cy="race-track-participant"
               :key="participant.id"
               class="flex-1 relative border-b border-white/20 flex items-center"
               :style="{ backgroundColor: `rgba(34, 197, 94, ${0.1 + (index % 2) * 0.1})` }"
             >
               <!-- Lane Number -->
-
               <div
                 class="absolute top-1/2 -translate-y-1/2 left-0 w-8 sm:w-8 h-[calc(100%-6px)] bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center text-white font-bold text-sm sm:text-lg z-10 rounded-r-lg"
               >
                 {{ index + 1 }}
               </div>
 
-              <!-- Horse Position -->
+              <!-- Horse Icon -->
               <div
                 class="group absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-1/2 hover:scale-110 cursor-pointer"
                 :class="{ 'transition-all duration-500 ease-out': transitionsEnabled }"
@@ -105,7 +105,6 @@
         </div>
       </div>
 
-      <!-- Finish Line -->
       <div
         class="absolute top-0 bottom-0 right-2 w-3 sm:w-4 bg-gradient-to-b from-error-600 via-finish-line to-error-600 flex items-center justify-center shadow-lg"
       >

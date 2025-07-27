@@ -10,6 +10,7 @@
       v-for="(tab, index) in props.tabs"
       :key="tab.value"
       :ref="(el) => (tabRefs[index] = el as HTMLElement)"
+      :data-cy="`tab-${tab.value}`"
       type="button"
       class="relative z-10 flex-1 py-2 px-4 text-center font-bold rounded-md focus:outline-none transition-colors duration-300 cursor-pointer"
       :class="

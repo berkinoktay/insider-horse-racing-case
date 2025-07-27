@@ -8,12 +8,12 @@
     "subtitle": "Feel the Thunder, Race to Glory!",
     "auto_mode_on": "Automatic",
     "auto_mode_off": "Manual",
-    "generate_program": "GENERATE PROGRAM",
-    "generating": "GENERATING...",
-    "resume": "RESUME",
-    "start": "START",
-    "pause": "PAUSE",
-    "reset": "RESET"
+    "generate_program": "Generate Program",
+    "generating": "Generating...",
+    "resume": "Resume",
+    "start": "Start",
+    "pause": "Pause",
+    "reset": "Reset"
   },
   "horse": {
     "stable_roster": "Stable Roster",

@@ -20,7 +20,7 @@
     </WidgetHeader>
 
     <div class="flex-1 overflow-y-auto">
-      <div v-if="currentResults" class="p-2 sm:p-4 space-y-6">
+      <div v-if="currentResults" class="p-2 sm:p-4 space-y-6" data-cy="results-table">
         <div class="text-center">
           <h3 class="text-base sm:text-lg font-bold text-white mb-4 flex items-center justify-center space-x-2">
             <span>{{ t('results.winners_podium') }}</span>
@@ -77,7 +77,7 @@
       </div>
 
       <div v-else class="flex-1 flex items-center justify-center p-8">
-        <div class="text-center">
+        <div data-cy="no-results-message" class="text-center">
           <h3 class="text-lg sm:text-xl font-bold text-white mb-2">{{ t('results.no_results_yet') }}</h3>
           <p class="text-white/60 text-sm">{{ t('results.results_description') }}</p>
         </div>

@@ -1,5 +1,6 @@
 <template>
   <div
+    data-cy="program-card"
     class="group relative backdrop-blur-sm bg-white/10 rounded-xl border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300"
     :class="{
       'ring-2 ring-yellow-400 shadow-lg shadow-yellow-400/20': status === 'current',

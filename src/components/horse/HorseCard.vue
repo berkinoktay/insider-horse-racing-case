@@ -1,5 +1,6 @@
 <template>
   <div
+    data-cy="horse-card"
     class="group relative backdrop-blur-sm bg-white/10 rounded-xl p-4 border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 overflow-hidden"
   >
     <!-- Horse Number Badge -->
