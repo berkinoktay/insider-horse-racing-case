@@ -7,8 +7,8 @@
       </div>
     </WidgetHeader>
 
-    <div class="flex-1 overflow-y-auto p-4 space-y-3">
-      <template v-if="horses.length > 0">
+    <div class="flex-1 overflow-y-auto p-4">
+      <TransitionGroup v-if="horses.length > 0" name="fade" tag="div" appear class="flex flex-col gap-3">
         <HorseCard
           v-for="(horse, index) in horses"
           :key="horse.id"
@@ -16,8 +16,9 @@
           :color="horse.color"
           :condition-score="horse.conditionScore"
           :number="index + 1"
+          :style="{ '--delay': `${index * 0.1}s` }"
         />
-      </template>
+      </TransitionGroup>
       <template v-else>
         <div class="text-center py-8">
           <p class="text-white/60">{{ t('horse.no_horses') }}</p>
@@ -40,3 +41,14 @@ const horseStore = useHorseStore()
 
 const horses = computed(() => horseStore.horseList)
 </script>
+
+<style scoped>
+.fade-enter-active {
+  transition: opacity 0.4s ease-out;
+  transition-delay: var(--delay, 0s);
+}
+
+.fade-enter-from {
+  opacity: 0;
+}
+</style>
