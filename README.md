@@ -1,61 +1,60 @@
-# .
+# 🏇 At Yarışı Oyunu
 
-This template should help get you started developing with Vue 3 in Vite.
+Bu proje, Vue.js kullanılarak geliştirilmiş interaktif bir at yarışı oyunudur. Proje, yarışların oluşturulduğu, koşulduğu ve sonuçların dinamik olarak görüntülendiği bir yapıya sahiptir.
 
-## Recommended IDE Setup
+## 🛠️ Kullanılan Teknolojiler
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **Framework**: [Vue 3](https://v3.vuejs.org/) (Composition API)
+- **Dil**: [TypeScript](https://www.typescriptlang.org/)
+- **State Management**: [Pinia](https://pinia.vuejs.org/)
+- **Stil**: [Tailwind CSS](https://tailwindcss.com/)
+- **UI Kütüphanesi**: [Lucide Vue Next](https://lucide.dev/)
+- **Linting & Formatting**: [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/)
 
-## Type Support for `.vue` Imports in TS
+## 🚀 Proje Kurulumu
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin:
 
-## Customize configuration
+1.  **Depoyu klonlayın:**
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+    ```sh
+    git clone <repository-url>
+    cd insider-horse-racing-case
 
-## Project Setup
+    ```
 
-```sh
-npm install
+2.  **Bağımlılıkları yükleyin:**
+
+    ```sh
+    yarn install
+    ```
+
+## 📜 Mevcut Komutlar
+
+Proje içerisinde aşağıdaki `yarn` komutlarını kullanabilirsiniz:
+
+- `yarn build`: Projeyi production için derler.
+- `yarn preview`: Production build'in önizlemesini sunar.
+- `yarn lint`: ESLint ile kod stilini kontrol eder ve düzeltir.
+- `yarn format`: Prettier ile proje dosyalarını formatlar.
+
+## 📁 Dizin Yapısı
+
+Proje, modüler ve ölçeklenebilir bir yapıya sahip olacak şekilde aşağıdaki gibi organize edilmiştir:
+
 ```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
+src/
+├── assets/       # Stil dosyaları, resimler ve fontlar
+├── components/   # Tekrar kullanılabilir Vue bileşenleri
+├── composables/  # Vue Composition API hook'ları
+├── constants/    # Sabit değerler ve veriler
+├── locales/      # i18n çeviri dosyaları
+├── plugins/      # Vue plugin'leri
+├── router/       # Vue Router konfigürasyonu
+├── stores/       # Pinia state management modülleri
+├── types/        # TypeScript tip tanımları
+├── utils/        # Yardımcı fonksiyonlar
+├── views/        # Sayfa bileşenleri
+├── App.vue       # Ana Vue bileşeni
+└── main.ts       # Uygulama giriş noktası
 ```
