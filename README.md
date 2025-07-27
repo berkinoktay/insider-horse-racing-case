@@ -8,7 +8,7 @@ Bu proje, Vue.js kullanılarak geliştirilmiş interaktif bir at yarışı oyunu
 - **Dil**: [TypeScript](https://www.typescriptlang.org/)
 - **State Management**: [Pinia](https://pinia.vuejs.org/)
 - **Stil**: [Tailwind CSS](https://tailwindcss.com/)
-- **UI Kütüphanesi**: [Lucide Vue Next](https://lucide.dev/)
+- **Icon Kütüphanesi**: [Lucide Vue Next](https://lucide.dev/)
 - **Linting & Formatting**: [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/)
 
 ## 🚀 Proje Kurulumu
