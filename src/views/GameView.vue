@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import HorseList from '@/components/layout/HorseList.vue'
 import RaceTrack from '@/components/layout/RaceTrack.vue'
 import RaceProgram from '@/components/layout/RaceProgram.vue'
@@ -7,12 +8,13 @@ import HeaderSection from '@/components/layout/HeaderSection.vue'
 import RaceResults from '@/components/layout/RaceResults.vue'
 import BaseTabs from '@/components/ui/BaseTabs.vue'
 
+const { t } = useI18n()
 const activeTab = ref('program')
 
-const tabs = [
-  { label: 'Program', value: 'program' },
-  { label: 'Results', value: 'results' },
-]
+const tabs = computed(() => [
+  { label: t('tabs.program'), value: 'program' },
+  { label: t('tabs.results'), value: 'results' },
+])
 </script>
 
 <template>

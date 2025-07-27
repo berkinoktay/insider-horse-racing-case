@@ -4,22 +4,29 @@
       <div class="flex items-center space-x-2 justify-between w-full">
         <div class="flex items-center space-x-3">
           <div class="text-xl sm:text-2xl">🏁</div>
-          <div v-if="!allRacesFinished">
+          <!-- Case 1: No program generated yet -->
+          <div v-if="raceState === RaceState.IDLE">
+            <h3 class="text-base sm:text-xl font-bold text-white">{{ t('race_track.awaiting_program') }}</h3>
+            <p class="text-blue-200 text-xs sm:text-sm">{{ t('race_track.generate_program_prompt') }}</p>
+          </div>
+          <!-- Case 2: All races are finished -->
+          <div v-else-if="allRacesFinished">
+            <h3 class="text-base sm:text-xl font-bold text-white">{{ t('race_track.all_races_finished') }}</h3>
+          </div>
+          <!-- Case 3: Race is in progress or ready -->
+          <div v-else>
             <h3 class="text-base sm:text-xl font-bold text-white">
-              {{ currentRace ? `Round ${currentRace.round}` : 'Awaiting Program' }}
+              {{ currentRace ? `${t('common.round')} ${currentRace.round}` : '' }}
             </h3>
             <p class="text-blue-200 text-xs sm:text-sm">
-              {{ currentRace ? `Distance: ${currentRace.distance}m` : 'Generate a program to begin' }}
+              {{ currentRace ? `${t('common.distance')}: ${currentRace.distance}m` : '' }}
             </p>
-          </div>
-          <div v-else>
-            <h3 class="text-base sm:text-xl font-bold text-white">All races finished!</h3>
           </div>
         </div>
         <BaseBadge
-          :text="raceState.toUpperCase()"
+          :text="t(`status.${raceState.toLowerCase()}`)"
           :variant="getRaceStateVariant(raceState)"
-          size="sm"
+          size="md"
           :animation="isRacing ? 'pulse' : 'none'"
         />
       </div>
@@ -101,13 +108,16 @@
       <div
         class="absolute top-0 bottom-0 right-2 w-3 sm:w-4 bg-gradient-to-b from-error-600 via-finish-line to-error-600 flex items-center justify-center shadow-lg"
       >
-        <div class="text-error-500 font-bold transform rotate-90 text-xs sm:text-base">FINISH</div>
+        <div class="text-error-500 font-bold transform rotate-90 text-xs sm:text-base">
+          {{ t('race_track.finish_line') }}
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import { computed, ref, watch, nextTick } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRaceStore } from '@/stores/race'
 import { storeToRefs } from 'pinia'
 import { RaceState } from '@/types/enums'
@@ -116,6 +126,7 @@ import WidgetHeader from '@/components/WidgetHeader.vue'
 import { getRaceStateVariant } from '@/utils/colors'
 import BaseBadge from '@/components/ui/BaseBadge.vue'
 
+const { t } = useI18n()
 const raceStore = useRaceStore()
 const { currentRace, raceState, allRacesFinished } = storeToRefs(raceStore)
 

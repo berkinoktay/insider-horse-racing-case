@@ -1,0 +1,65 @@
+{
+  "tabs": {
+    "program": "Program",
+    "results": "Sonuçlar"
+  },
+  "header": {
+    "title": "At Yarışı Şampiyonası",
+    "subtitle": "Gök Gürültüsünü Hisset, Zafere Koş!",
+    "auto_mode_on": "Otomatik",
+    "auto_mode_off": "Manuel",
+    "generate_program": "PROGRAM OLUŞTUR",
+    "generating": "OLUŞTURULUYOR...",
+    "resume": "DEVAM ET",
+    "start": "BAŞLAT",
+    "pause": "DURAKLAT",
+    "reset": "SIFIRLA"
+  },
+  "horse": {
+    "stable_roster": "Ahır Kadrosu",
+    "horses": "At",
+    "no_horses": "Ahırda at yok"
+  },
+  "program": {
+    "title": "Yarış Programı",
+    "no_races": "Planlanmış yarış yok"
+  },
+  "program_card": {
+    "horses_will_be_selected": "Atlar seçilecektir"
+  },
+  "results": {
+    "title": "Yarış Sonuçları",
+    "winners_podium": "Kazananlar Podyumu",
+    "full_results": "Tüm Sonuçlar",
+    "no_results_yet": "Henüz Sonuç Yok",
+    "results_description": "Yarışlar tamamlandıktan sonra sonuçlar görünecektir",
+    "columns": {
+      "pos": "Poz",
+      "horse": "At",
+      "time": "Süre"
+    }
+  },
+  "status": {
+    "completed": "Tamamlandı",
+    "pending": "Beklemede",
+    "running": "Çalışıyor",
+    "paused": "Durduruldu",
+    "finished": "Tamamlandı",
+    "idle": "Beklemede",
+    "current": "Şu anki",
+    "upcoming": "Yaklaşan",
+    "ready": "Hazır",
+    "racing": "Yarışıyor"
+  },
+  "common": {
+    "round": "Tur",
+    "distance": "Mesafe",
+    "participants": "Yarışanlar"
+  },
+  "race_track": {
+    "awaiting_program": "Program Bekleniyor",
+    "generate_program_prompt": "Başlamak için bir program oluşturun",
+    "all_races_finished": "Tüm yarışlar bitti!",
+    "finish_line": "BİTİŞ"
+  }
+}

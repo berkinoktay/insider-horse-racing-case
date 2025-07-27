@@ -1,0 +1,65 @@
+{
+  "tabs": {
+    "program": "Program",
+    "results": "Results"
+  },
+  "header": {
+    "title": "Horse Racing Championship",
+    "subtitle": "Feel the Thunder, Race to Glory!",
+    "auto_mode_on": "Automatic",
+    "auto_mode_off": "Manual",
+    "generate_program": "GENERATE PROGRAM",
+    "generating": "GENERATING...",
+    "resume": "RESUME",
+    "start": "START",
+    "pause": "PAUSE",
+    "reset": "RESET"
+  },
+  "horse": {
+    "stable_roster": "Stable Roster",
+    "horses": "Horses",
+    "no_horses": "No horses in stable"
+  },
+  "program": {
+    "title": "Race Program",
+    "no_races": "No races scheduled"
+  },
+  "program_card": {
+    "horses_will_be_selected": "Horses will be selected"
+  },
+  "results": {
+    "title": "Race Results",
+    "winners_podium": "Winner's Podium",
+    "full_results": "Full Results",
+    "no_results_yet": "No Results Yet",
+    "results_description": "Results will appear after races complete",
+    "columns": {
+      "pos": "Pos",
+      "horse": "Horse",
+      "time": "Time"
+    }
+  },
+  "status": {
+    "completed": "Completed",
+    "pending": "Pending",
+    "running": "Running",
+    "paused": "Paused",
+    "finished": "Finished",
+    "idle": "Idle",
+    "current": "Current",
+    "upcoming": "Upcoming",
+    "ready": "Ready",
+    "racing": "Racing"
+  },
+  "common": {
+    "round": "Round",
+    "distance": "Distance",
+    "participants": "Participants"
+  },
+  "race_track": {
+    "awaiting_program": "Awaiting Program",
+    "generate_program_prompt": "Generate a program to begin",
+    "all_races_finished": "All races finished!",
+    "finish_line": "FINISH"
+  }
+}

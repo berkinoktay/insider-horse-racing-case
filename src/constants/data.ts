@@ -1,5 +1,3 @@
-import type { Column } from '@/types'
-
 export const HORSE_NAMES = [
   'Thunderbolt',
   'Shadowfax',
@@ -44,19 +42,4 @@ export const HORSE_COLORS = [
   '#ffd8b1', // açık turuncu
   '#000080', // lacivert
   '#808080', // gri
-]
-
-export const RACE_RESULTS_COLUMNS: Column[] = [
-  {
-    key: 'position',
-    label: 'Pos',
-  },
-  {
-    key: 'horse',
-    label: 'Horse',
-  },
-  {
-    key: 'time',
-    label: 'Time',
-  },
 ]

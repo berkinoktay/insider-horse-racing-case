@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<BaseBadgeProps>(), {
   animation: 'none',
 })
 
-const baseClasses = 'px-3 py-1 rounded-full text-xs font-bold text-white'
+const baseClasses = 'flex items-center justify-center text-center px-3 py-1 rounded-full text-xs font-bold text-white'
 
 const variantClasses = {
   primary: 'bg-gradient-to-r from-yellow-400 to-orange-500',

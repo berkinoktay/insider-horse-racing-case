@@ -7,19 +7,21 @@
     }"
   >
     <div class="pl-6 p-3 sm:p-4">
-      <div class="flex items-center lg:items-start justify-between mb-3">
+      <div
+        class="flex flex-row lg:flex-col-reverse xl:flex-row items-center lg:items-start justify-between mb-3 space-y-2 lg:gap-2"
+      >
         <div class="flex items-center space-x-3">
           <div>
             <h3 class="text-white font-bold text-base sm:text-lg">{{ roundName }}</h3>
-            <p class="text-blue-200 text-xs sm:text-sm">Distance: {{ distance }}m</p>
+            <p class="text-blue-200 text-xs sm:text-sm">{{ t('common.distance') }}: {{ distance }}m</p>
           </div>
         </div>
-        <BaseBadge :text="status.toUpperCase()" :variant="getProgramStatusVariant(status)" size="sm" />
+        <BaseBadge :text="t(`status.${status}`)" :variant="getProgramStatusVariant(status)" size="sm" />
       </div>
 
       <div v-if="participants.length > 0" class="space-y-2">
-        <div class="text-white/80 text-xs sm:text-sm font-medium">Participants:</div>
-        <div class="grid grid-cols-2 gap-x-2 gap-y-1">
+        <div class="text-white/80 text-xs sm:text-sm font-medium">{{ t('common.participants') }}:</div>
+        <div class="grid grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-x-2 gap-y-1">
           <div
             v-for="(participant, index) in participants"
             :key="participant.id"
@@ -34,13 +36,14 @@
       </div>
 
       <div v-else-if="status === 'upcoming'" class="text-center py-4">
-        <p class="text-white/60 text-sm">Horses will be selected</p>
+        <p class="text-white/60 text-sm">{{ t('program_card.horses_will_be_selected') }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import type { Horse, ProgramStatus } from '@/types'
 import { getProgramStatusVariant } from '@/utils'
 import BaseBadge from '@/components/ui/BaseBadge.vue'
@@ -53,4 +56,5 @@ interface ProgramCardProps {
 }
 
 defineProps<ProgramCardProps>()
+const { t } = useI18n()
 </script>

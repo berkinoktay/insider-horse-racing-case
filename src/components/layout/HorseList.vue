@@ -2,8 +2,8 @@
   <div class="h-[50vh] lg:h-full flex flex-col">
     <WidgetHeader>
       <div class="flex items-center space-x-2 justify-between w-full">
-        <span class="text-lg font-bold text-white">Stable Roster</span>
-        <BaseBadge :text="`${horses.length} Horses`" variant="secondary" size="sm" animation="none" />
+        <span class="text-lg font-bold text-white">{{ t('horse.stable_roster') }}</span>
+        <BaseBadge :text="`${horses.length} ${t('horse.horses')}`" variant="secondary" size="sm" animation="none" />
       </div>
     </WidgetHeader>
 
@@ -20,7 +20,7 @@
       </template>
       <template v-else>
         <div class="text-center py-8">
-          <p class="text-white/60">No horses in stable</p>
+          <p class="text-white/60">{{ t('horse.no_horses') }}</p>
         </div>
       </template>
     </div>
@@ -29,11 +29,13 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useHorseStore } from '@/stores/horse'
 import HorseCard from '@/components/horse/HorseCard.vue'
 import WidgetHeader from '@/components/WidgetHeader.vue'
 import BaseBadge from '@/components/ui/BaseBadge.vue'
 
+const { t } = useI18n()
 const horseStore = useHorseStore()
 
 const horses = computed(() => horseStore.horseList)
