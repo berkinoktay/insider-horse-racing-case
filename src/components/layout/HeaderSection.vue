@@ -53,7 +53,7 @@
 
             <BaseButton
               @click="resetRace"
-              :disabled="isGeneratingProgram || raceState === RaceState.IDLE"
+              :disabled="isGeneratingProgram || raceState === RaceState.IDLE || completedRounds === 0"
               variant="danger"
               size="sm"
               data-cy="reset-button"
@@ -77,7 +77,7 @@ import TopBar from '@/components/layout/TopBar.vue'
 
 const { t } = useI18n()
 const raceStore = useRaceStore()
-const { raceState, isGeneratingProgram } = storeToRefs(raceStore)
+const { raceState, isGeneratingProgram, completedRounds } = storeToRefs(raceStore)
 
 const { generateProgram, startRace, resetRace, pauseRace, resumeRace } = raceStore
 
