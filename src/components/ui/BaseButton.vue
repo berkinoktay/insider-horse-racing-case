@@ -29,21 +29,24 @@ const props = withDefaults(defineProps<BaseButtonProps>(), {
 })
 
 const baseClasses =
-  'group relative inline-flex items-center justify-center gap-2 font-bold rounded-xl shadow-lg cursor-pointer transform  transition-all duration-300 disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-offset-2 whitespace-nowrap'
+  'button group relative inline-flex items-center justify-center gap-2 font-bold rounded-xl shadow-lg cursor-pointer transform  transition-all duration-300 disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-offset-2 whitespace-nowrap'
 
 const sizeClasses = {
-  sm: 'px-6 py-2.5 text-sm',
-  md: 'px-8 py-3 text-base',
-  lg: 'px-10 py-4 text-lg',
+  sm: 'size-sm px-6 py-2.5 text-sm',
+  md: 'size-md px-8 py-3 text-base',
+  lg: 'size-lg px-10 py-4 text-lg',
 }
 
 const variantClasses = {
-  primary: 'bg-primary-500 text-white hover:bg-primary-600 active:bg-primary-700 focus-visible:ring-primary-500',
+  primary:
+    'button-primary bg-primary-500 text-white hover:bg-primary-600 active:bg-primary-700 focus-visible:ring-primary-500',
   secondary:
-    'bg-secondary-500 text-white hover:bg-secondary-600 active:bg-secondary-700 focus-visible:ring-secondary-500',
-  accent: 'bg-accent-500 text-white hover:bg-accent-600 active:bg-accent-700 focus-visible:ring-accent-500',
-  danger: 'bg-error-500 text-white hover:bg-error-600 active:bg-error-700 focus-visible:ring-error-500',
-  warning: 'bg-yellow-500 text-white hover:bg-yellow-600 active:bg-yellow-700 focus-visible:ring-yellow-500',
+    'button-secondary bg-secondary-500 text-white hover:bg-secondary-600 active:bg-secondary-700 focus-visible:ring-secondary-500',
+  accent:
+    'button-accent bg-accent-500 text-white hover:bg-accent-600 active:bg-accent-700 focus-visible:ring-accent-500',
+  danger: 'button-danger bg-error-500 text-white hover:bg-error-600 active:bg-error-700 focus-visible:ring-error-500',
+  warning:
+    'button-warning bg-yellow-500 text-white hover:bg-yellow-600 active:bg-yellow-700 focus-visible:ring-yellow-500',
 }
 
 const classes = computed(() =>

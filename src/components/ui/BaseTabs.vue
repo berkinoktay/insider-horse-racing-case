@@ -1,7 +1,8 @@
 <template>
   <div ref="tabsContainer" class="relative flex w-full items-center rounded-2xl border border-white/20 bg-white/10 p-2">
     <span
-      v-if="indicatorStyle.width !== '0px'"
+      v-if="indicatorStyle.width !== '0px' && modelValue"
+      data-testid="indicator"
       class="absolute top-1 bottom-1 rounded-lg bg-gradient-to-r from-primary-500/80 to-primary-500/50 transition-all duration-300 ease-in-out shadow-lg pointer-events-none select-none"
       :style="indicatorStyle"
     ></span>
@@ -11,7 +12,15 @@
       :ref="(el) => (tabRefs[index] = el as HTMLElement)"
       type="button"
       class="relative z-10 flex-1 py-2 px-4 text-center font-bold rounded-md focus:outline-none transition-colors duration-300 cursor-pointer"
-      :class="[modelValue === tab.value ? 'text-white' : 'text-gray-300 hover:text-white']"
+      :class="
+        cn(
+          'relative z-10 flex-1 py-2 px-4 text-center font-bold rounded-md focus:outline-none transition-colors duration-300 cursor-pointer',
+          {
+            'text-white': modelValue === tab.value,
+            'text-gray-300 hover:text-white': modelValue !== tab.value,
+          },
+        )
+      "
       @click="selectTab(tab.value)"
     >
       {{ tab.label }}
@@ -20,6 +29,7 @@
 </template>
 
 <script setup lang="ts">
+import { cn } from '@/utils'
 import { ref, watch, nextTick, onMounted } from 'vue'
 
 interface Tab {

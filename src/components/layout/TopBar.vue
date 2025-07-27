@@ -22,7 +22,7 @@ import { useRaceStore } from '@/stores/race'
 import { storeToRefs } from 'pinia'
 import { RaceState } from '@/types/enums'
 import BaseSwitch from '@/components/ui/BaseSwitch.vue'
-import LanguageSwitcher from '@/components/ui/LanguageSwitcher.vue'
+import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 
 const { t } = useI18n()
 const raceStore = useRaceStore()

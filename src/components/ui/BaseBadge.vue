@@ -21,21 +21,22 @@ const props = withDefaults(defineProps<BaseBadgeProps>(), {
   animation: 'none',
 })
 
-const baseClasses = 'flex items-center justify-center text-center px-3 py-1 rounded-full text-xs font-bold text-white'
+const baseClasses =
+  'badge flex items-center justify-center text-center px-3 py-1 rounded-full text-xs font-bold text-white'
 
 const variantClasses = {
-  primary: 'bg-gradient-to-r from-yellow-400 to-orange-500',
-  secondary: 'bg-gradient-to-r from-blue-400 to-purple-500',
-  success: 'bg-gradient-to-r from-green-500 to-green-600',
-  danger: 'bg-gradient-to-r from-red-400 to-pink-500',
-  neutral: 'bg-gradient-to-r from-gray-500 to-gray-600',
+  primary: 'badge-primary bg-gradient-to-r from-yellow-400 to-orange-500',
+  secondary: 'badge-secondary bg-gradient-to-r from-blue-400 to-purple-500',
+  success: 'badge-success bg-gradient-to-r from-green-500 to-green-600',
+  danger: 'badge-danger bg-gradient-to-r from-red-400 to-pink-500',
+  neutral: 'badge-neutral bg-gradient-to-r from-gray-500 to-gray-600',
 }
 
 const sizeClasses = {
-  xs: 'px-2 py-0.5 text-[10px]',
-  sm: 'px-2.5 py-0.5 text-xs',
-  md: 'px-3 py-1 text-sm',
-  lg: 'px-4 py-1.5 text-base',
+  xs: 'size-xs px-2 py-0.5 text-[10px]',
+  sm: 'size-sm px-2.5 py-0.5 text-xs',
+  md: 'size-md px-3 py-1 text-sm',
+  lg: 'size-lg px-4 py-1.5 text-base',
 }
 
 const animationClasses = {
