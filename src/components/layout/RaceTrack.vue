@@ -81,7 +81,8 @@
                   <HorseIcon
                     :size="80"
                     :color="participant.color"
-                    :is-running="isRacing && participant.position < currentRace.distance"
+                    :showRunningAir="isRacing && participant.position < currentRace.distance"
+                    showShadow
                   />
 
                   <div
