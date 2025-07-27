@@ -22,7 +22,7 @@
     <!-- Condition Score -->
     <div class="space-y-2">
       <div class="flex justify-between items-center">
-        <span class="text-white/80 text-sm">Condition</span>
+        <span class="text-white/80 text-sm">{{ $t('horse.condition') }}</span>
         <span :class="getConditionStyle(conditionScore)"> {{ conditionScore }}/100 </span>
       </div>
 

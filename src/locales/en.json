@@ -18,7 +18,8 @@
   "horse": {
     "stable_roster": "Stable Roster",
     "horses": "Horses",
-    "no_horses": "No horses in stable"
+    "no_horses": "No horses in stable",
+    "condition": "Condition"
   },
   "program": {
     "title": "Race Program",

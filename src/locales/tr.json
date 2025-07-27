@@ -18,7 +18,8 @@
   "horse": {
     "stable_roster": "Ahır Kadrosu",
     "horses": "At",
-    "no_horses": "Ahırda at yok"
+    "no_horses": "Ahırda at yok",
+    "condition": "Durum"
   },
   "program": {
     "title": "Yarış Programı",
