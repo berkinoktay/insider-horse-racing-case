@@ -74,7 +74,6 @@
               <!-- Horse Icon -->
               <div
                 class="group absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-1/2 hover:scale-110 cursor-pointer"
-                :class="{ 'transition-all duration-500 ease-out': transitionsEnabled }"
                 :style="{ left: (participant.position / currentRace.distance) * 100 + '%' }"
               >
                 <div class="relative">
@@ -116,7 +115,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed, ref, watch, nextTick } from 'vue'
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRaceStore } from '@/stores/race'
 import { storeToRefs } from 'pinia'
@@ -130,20 +129,8 @@ const { t } = useI18n()
 const raceStore = useRaceStore()
 const { currentRace, raceState, allRacesFinished } = storeToRefs(raceStore)
 
-const transitionsEnabled = ref(false)
 const isRacing = computed(() => raceState.value === RaceState.RACING)
 const hasParticipants = computed(() => !!currentRace.value?.participants?.length)
-
-watch(currentRace, async (newRace, oldRace) => {
-  if (newRace?.round !== oldRace?.round) {
-    transitionsEnabled.value = false
-    await nextTick()
-  }
-})
-
-watch(isRacing, (racing) => {
-  transitionsEnabled.value = racing
-})
 
 const distanceMarkers = computed(() => {
   if (!currentRace.value) return []
